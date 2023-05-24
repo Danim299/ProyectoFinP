@@ -8,6 +8,6 @@ package Mazmorra;
  *
  * @author admin
  */
-public class dungeon2 {
+public class Dungeon2 {
     
 }
