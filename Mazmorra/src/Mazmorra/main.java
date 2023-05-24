@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class main {
+public class Main {
 
     public static void main(String[] args) {
         dungeon1 d = new dungeon1();

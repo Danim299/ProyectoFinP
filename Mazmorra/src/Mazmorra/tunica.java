@@ -4,10 +4,6 @@
  */
 package Mazmorra;
 
-/**
- *
- * @author admin
- */
-public class tunica {
+public class Tunica {
     
 }
