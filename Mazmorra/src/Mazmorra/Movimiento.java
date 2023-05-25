@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Line2D;
-import java.awt.geom.Rectangle2D;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -43,7 +42,7 @@ public class Movimiento{
         private Rectangle champion;
         private Line2D path;
 
-        private double speed = 0.1;
+        private double speed = 0.2;
 
         private Timer timer;
         private Long startTime;
