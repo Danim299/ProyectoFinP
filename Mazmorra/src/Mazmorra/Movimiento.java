@@ -16,7 +16,8 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 public class Movimiento{
-    
+    private boolean finalizado=true;
+    private TestPane tp = null;
     public Movimiento() {
         EventQueue.invokeLater(new Runnable() {
             @Override
@@ -27,14 +28,27 @@ public class Movimiento{
                     ex.printStackTrace();
                 }
 
-                JFrame frame = new JFrame("Testing");
+                JFrame frame = new JFrame("Prueba");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.add(new TestPane());
+                tp =new TestPane();
+                frame.add(tp);
                 frame.pack();
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
             }
         });
+    }
+    public boolean getPasar(){
+        
+        return finalizado;
+    }
+    
+
+    public double getTpX() {
+        return tp.getXfinal();
+    }
+    public double getTpY() {
+        return tp.getYfinal();
     }
 
     public class TestPane extends JPanel {
@@ -130,12 +144,24 @@ public class Movimiento{
 
                 runTime = distance / (double)speed;
 
+
+System.out.println(targetX);
+                if(targetX>750){
+
+                    finalizado=false;
+                }
+
             }
         }
-        public void cordenadas (Rectangle champion){
+        /*public void cordenadas (Rectangle champion){ 
             champion.getX();
             champion.getY();
+        }*/
+        public double getXfinal(){
+            return champion.getX();
+        }
+        public double getYfinal(){
+            return champion.getY();
         }
     }
-
 }

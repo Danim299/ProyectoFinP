@@ -32,23 +32,36 @@ public class Main {
         }else if (listo==1){
         
         }
-
-
+       
         Movimiento m = new Movimiento();
+        try{
+            Thread.sleep(1000);
+        }catch(Exception e){};
 
         System.out.println();
+        boolean var = true;
+        while(var){
+            while(m.getPasar()) {
+                System.out.print(".");
+            }
+            System.out.println(m.getTpX()+" y "+ m.getTpY());
 
-/*      
-        listo = JOptionPane.showOptionDialog(null, "Estás apunto de adentrarte en "+d.getNombre()+"\nTienes todo el equipo listo?", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, icon, botones, botones);
-       
-        if (listo==0){
-            System.out.println("Vamos a ello");
-            JFrame f=new JFrame("Dungeon");
-            f.setBounds(10,10,300,200);
-            f.setVisible(true);
-            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        }else if (listo==1){
-            System.out.println("Bueno aquí esperaré...");
-        }*/
+
+
+            listo = JOptionPane.showOptionDialog(null, "Estás apunto de adentrarte en "+d.getNombre()+"\nTienes todo el equipo listo?", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, icon, botones, botones);
+        
+            if (listo==0){
+                System.out.println("Vamos a ello");
+                JFrame f=new JFrame("Dungeon");
+                f.setBounds(10,10,300,200);
+                f.setVisible(true);
+                f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                var=false;
+            }else if (listo==1){
+                System.out.println("Bueno aquí esperaré...");
+                var=true;
+            }
+
+    }
     }
 }
