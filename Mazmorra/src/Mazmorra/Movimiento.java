@@ -18,25 +18,26 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class Movimiento{
     private boolean finalizado=true;
     private TestPane tp = null;
-    public Movimiento() {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-                    ex.printStackTrace();
-                }
+    public Movimiento(){
+            Thread thread = new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                        ex.printStackTrace();
+                    }
 
-                JFrame frame = new JFrame("Prueba");
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                tp =new TestPane();
-                frame.add(tp);
-                frame.pack();
-                frame.setLocationRelativeTo(null);
-                frame.setVisible(true);
-            }
-        });
+                    JFrame frame = new JFrame("Prueba");
+                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    tp =new TestPane();
+                    frame.add(tp);
+                    frame.pack();
+                    frame.setLocationRelativeTo(null);
+                    frame.setVisible(true);
+                }
+            }); 
+            thread.start();
+            
     }
     public boolean getPasar(){
         

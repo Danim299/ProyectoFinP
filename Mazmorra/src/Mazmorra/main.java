@@ -44,9 +44,8 @@ public class Main {
             while(m.getPasar()) {
                 System.out.print(".");
             }
+            
             System.out.println(m.getTpX()+" y "+ m.getTpY());
-
-
 
             listo = JOptionPane.showOptionDialog(null, "Estás apunto de adentrarte en "+d.getNombre()+"\nTienes todo el equipo listo?", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, icon, botones, botones);
         
