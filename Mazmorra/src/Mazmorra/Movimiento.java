@@ -38,9 +38,9 @@ public class Movimiento{
             }); 
             thread.start();
             
+            
     }
     public boolean getPasar(){
-        
         return finalizado;
     }
     
@@ -148,8 +148,8 @@ public class Movimiento{
 
 System.out.println(targetX);
                 if(targetX>750){
-
                     finalizado=false;
+                    
                 }
 
             }

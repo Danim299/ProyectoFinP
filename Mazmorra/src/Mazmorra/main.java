@@ -5,6 +5,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import Mazmorra.Movimiento.TestPane;
+
 public class Main {
 
     public static void main(String[] args) {
