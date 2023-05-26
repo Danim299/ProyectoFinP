@@ -37,18 +37,18 @@ public class Main {
        
         Movimiento m = new Movimiento();
         try{
-            Thread.sleep(1000);
+            Thread.sleep(1000);        
         }catch(Exception e){};
 
         System.out.println();
         boolean var = true;
         while(var){
             while(m.getPasar()) {
-                System.out.print(".");
+                
             }
             
-            System.out.println(m.getTpX()+" y "+ m.getTpY());
-
+            System.out.println(m.getFinalX()+" y "+ m.getFinalY());
+            
             listo = JOptionPane.showOptionDialog(null, "Estás apunto de adentrarte en "+d.getNombre()+"\nTienes todo el equipo listo?", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, icon, botones, botones);
         
             if (listo==0){

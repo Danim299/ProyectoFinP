@@ -2,6 +2,7 @@ package Mazmorra;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -10,13 +11,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Line2D;
+import java.lang.annotation.Target;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 public class Movimiento{
     private boolean finalizado=true;
+    private double finalX;
+    private double finalY;
     private TestPane tp = null;
     public Movimiento(){
             Thread thread = new Thread(new Runnable() {
@@ -26,30 +32,27 @@ public class Movimiento{
                     } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
                         ex.printStackTrace();
                     }
-
-                    JFrame frame = new JFrame("Prueba");
-                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    tp =new TestPane();
-                    frame.add(tp);
-                    frame.pack();
-                    frame.setLocationRelativeTo(null);
-                    frame.setVisible(true);
+                        JFrame frame = new JFrame("Prueba");
+                        tp =new TestPane();
+                        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        frame.dispose();
+                        frame.add(tp);
+                        frame.pack();
+                        frame.setLocationRelativeTo(null);
+                        frame.setVisible(true);
                 }
             }); 
             thread.start();
-            
-            
+    }
+
+    public double getFinalX() {
+        return finalX;
+    }
+    public double getFinalY() {
+        return finalY;
     }
     public boolean getPasar(){
         return finalizado;
-    }
-    
-
-    public double getTpX() {
-        return tp.getXfinal();
-    }
-    public double getTpY() {
-        return tp.getYfinal();
     }
 
     public class TestPane extends JPanel {
@@ -76,6 +79,7 @@ public class Movimiento{
                     calculateChampionMovement(e.getX(), e.getY(), champion);
                     startTime = System.currentTimeMillis();
                     timer.start();
+
                 }
             });
 
@@ -146,14 +150,25 @@ public class Movimiento{
                 runTime = distance / (double)speed;
 
 
-System.out.println(targetX);
+                System.out.println(targetX);
+                System.out.println(targetY);
                 if(targetX>750){
                     finalizado=false;
-                    
+                    tp.setVisible(false);
+
+                    //System.exit(0);
+                    tp.updateUI();
+                    finalX = targetX;
+                    finalY = targetY;
                 }
+
 
             }
         }
+
+
+
+
         /*public void cordenadas (Rectangle champion){ 
             champion.getX();
             champion.getY();
