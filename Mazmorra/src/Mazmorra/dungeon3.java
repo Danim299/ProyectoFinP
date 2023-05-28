@@ -1,5 +1,5 @@
 package Mazmorra;
 
-public class Dungeon3 {
+public class dungeon3 {
     
 }

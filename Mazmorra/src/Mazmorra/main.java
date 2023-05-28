@@ -7,10 +7,10 @@ import javax.swing.JOptionPane;
 
 import Mazmorra.Movimiento.TestPane;
 
-public class Main {
+public class main {
 
     public static void main(String[] args) {
-        Dungeon1 d = new Dungeon1();
+        dungeon1 d = new dungeon1();
         final ImageIcon icon = new ImageIcon("./Mazmorra/img/Anubis.png");
         final ImageIcon personaje = new ImageIcon("./Mazmorra/img/personaje.png");
         final ImageIcon azaTun = new ImageIcon("./Mazmorra/img/tunicaAzada.png");

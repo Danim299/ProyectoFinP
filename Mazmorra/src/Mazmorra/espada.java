@@ -1,5 +1,5 @@
 package Mazmorra;
 
-public class Espada {
+public class espada {
     
 }

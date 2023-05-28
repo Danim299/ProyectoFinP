@@ -4,6 +4,6 @@
  */
 package Mazmorra;
 
-public class Tunica {
+public class tunica {
     
 }

@@ -8,7 +8,7 @@ package Mazmorra;
  *
  * @author admin
  */
-public class Dungeon1 {
+public class dungeon1 {
     private String nombre;
 
     public String getNombre() {
