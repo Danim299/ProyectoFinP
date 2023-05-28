@@ -20,6 +20,7 @@ public class main {
         String[] botonesInicio = {"Nos preparamos?"};
         String[] botonesA = {"Continuamos hacia la puerta"};
         String[] botonesB = {"Ir a la herreria", "Continuar con el viaje"};
+        String[] botonesC = {"Levantarse"};
         String[] botones = {"Vamos!","Mejor no"};
         
         
@@ -30,7 +31,7 @@ public class main {
         listo = JOptionPane.showOptionDialog(null, "Al salir de casa te das cuenta de que tu tio el herreo podría tener algo para ti", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, pensar, botonesB, null);
         
         if (listo==0){
-             listo = JOptionPane.showOptionDialog(null, "Llegas y mantienes una larga conversacion con tu tio contando la situación acompañado por un café solo con hielo y una crema de orujo", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, hablar, botonesB, null);
+             listo = JOptionPane.showOptionDialog(null, "Llegas y mantienes una larga conversacion con tu tio contando la situación acompañado por un café solo con hielo y una crema de orujo", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, hablar, botonesC, null);
         }else if (listo==1){
         
         }
