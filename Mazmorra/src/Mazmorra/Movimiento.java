@@ -24,6 +24,7 @@ public class Movimiento{
     private double finalX;
     private double finalY;
     private TestPane tp = null;
+    private JFrame frame;
     public Movimiento(){
             Thread thread = new Thread(new Runnable() {
                 public void run() {
@@ -32,7 +33,7 @@ public class Movimiento{
                     } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
                         ex.printStackTrace();
                     }
-                        JFrame frame = new JFrame("Prueba");
+                        frame = new JFrame("Prueba");
                         tp =new TestPane();
                         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         frame.dispose();
@@ -44,7 +45,6 @@ public class Movimiento{
             }); 
             thread.start();
     }
-
     public double getFinalX() {
         return finalX;
     }
@@ -54,6 +54,7 @@ public class Movimiento{
     public boolean getPasar(){
         return finalizado;
     }
+    
 
     public class TestPane extends JPanel {
 
@@ -155,7 +156,8 @@ public class Movimiento{
                 if(targetX>750){
                     finalizado=false;
                     tp.setVisible(false);
-
+                    tp.remove(tp);
+                    frame.dispose();
                     //System.exit(0);
                     tp.updateUI();
                     finalX = targetX;
@@ -165,9 +167,6 @@ public class Movimiento{
 
             }
         }
-
-
-
 
         /*public void cordenadas (Rectangle champion){ 
             champion.getX();
