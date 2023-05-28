@@ -36,7 +36,6 @@ public class Movimiento{
                         frame = new JFrame("Prueba");
                         tp =new TestPane();
                         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        frame.dispose();
                         frame.add(tp);
                         frame.pack();
                         frame.setLocationRelativeTo(null);
@@ -44,6 +43,11 @@ public class Movimiento{
                 }
             }); 
             thread.start();
+    }
+    public void disposeFrame() {
+        if (frame != null) {
+            frame.dispose();
+        }
     }
     public double getFinalX() {
         return finalX;
