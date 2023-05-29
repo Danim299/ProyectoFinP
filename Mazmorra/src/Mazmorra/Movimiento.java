@@ -7,6 +7,7 @@ import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Panel;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,6 +29,7 @@ public class Movimiento{
     private double finalY;
     private TestPane tp = null;
     private JFrame frame;
+
     public Movimiento(){
             Thread thread = new Thread(new Runnable() {
                 public void run() {
@@ -39,13 +41,6 @@ public class Movimiento{
 
                         frame = new JFrame("Prueba");
                         tp =new TestPane();
-                        /*
-                        ImageIcon background = new ImageIcon("./Mazmorra/img/fondo.jpg");
-                        JLabel backgroundLabel = new JLabel(background);
-                        backgroundLabel.setBounds(0, 0, tp.getWidth(), tp.getHeight());
-                        tp.add(backgroundLabel); */
-
-
                         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         frame.add(tp);
                         frame.pack();
@@ -77,7 +72,7 @@ public class Movimiento{
         private Image championImage;
         private Rectangle champion;
         private Line2D path;
-
+        private ImageIcon imagen;
         private double speed = 0.3;
 
         private Timer timer;
@@ -86,7 +81,6 @@ public class Movimiento{
         private double targetX, targetY;
         private double startX, startY;
         private double runTime;
-
         public TestPane() {
             champion = new Rectangle(95, 95, 90, 90);
             championImage = new ImageIcon("./Mazmorra/img/personajeCorrer.gif").getImage();
@@ -144,6 +138,13 @@ public class Movimiento{
             int height = (int) champion.getHeight();
             g2d.drawImage(championImage, x, y, width, height, this);
             g2d.dispose();
+        }
+        public void paint(Graphics g) {
+            imagen = new ImageIcon("./Mazmorra/img/fondo.jpg");
+            g.drawImage(imagen.getImage(), 0, 0, getWidth(), getHeight(),this);
+            
+            setOpaque(false);
+            super.paint(g);
         }
 
         public void calculateChampionMovement(double x, double y, Rectangle champion) {
