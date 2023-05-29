@@ -1,10 +1,12 @@
 package Mazmorra;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,8 +14,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Line2D;
 import java.lang.annotation.Target;
-
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -33,13 +36,22 @@ public class Movimiento{
                     } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
                         ex.printStackTrace();
                     }
+
                         frame = new JFrame("Prueba");
                         tp =new TestPane();
+                        /*
+                        ImageIcon background = new ImageIcon("./Mazmorra/img/fondo.jpg");
+                        JLabel backgroundLabel = new JLabel(background);
+                        backgroundLabel.setBounds(0, 0, tp.getWidth(), tp.getHeight());
+                        tp.add(backgroundLabel); */
+
+
                         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         frame.add(tp);
                         frame.pack();
                         frame.setLocationRelativeTo(null);
                         frame.setVisible(true);
+
                 }
             }); 
             thread.start();
@@ -56,16 +68,17 @@ public class Movimiento{
         return finalY;
     }
     public boolean getPasar(){
+        if(getFinalX()>750){finalizado=false;}
         return finalizado;
     }
     
 
     public class TestPane extends JPanel {
-
+        private Image championImage;
         private Rectangle champion;
         private Line2D path;
 
-        private double speed = 0.2;
+        private double speed = 0.3;
 
         private Timer timer;
         private Long startTime;
@@ -76,7 +89,7 @@ public class Movimiento{
 
         public TestPane() {
             champion = new Rectangle(95, 95, 90, 90);
-
+            championImage = new ImageIcon("./Mazmorra/img/personajeCorrer.gif").getImage();
             addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -125,11 +138,11 @@ public class Movimiento{
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             Graphics2D g2d = (Graphics2D) g.create();
-            g2d.draw(champion);
-            if (path != null) {
-                g2d.setColor(Color.black);
-                g2d.draw(path);
-            }
+            int x = (int) champion.getX();
+            int y = (int) champion.getY();
+            int width = (int) champion.getWidth();
+            int height = (int) champion.getHeight();
+            g2d.drawImage(championImage, x, y, width, height, this);
             g2d.dispose();
         }
 
@@ -162,8 +175,9 @@ public class Movimiento{
                     tp.setVisible(false);
                     tp.remove(tp);
                     frame.dispose();
+                    disposeFrame();
                     //System.exit(0);
-                    tp.updateUI();
+                    //tp.updateUI();
                     finalX = targetX;
                     finalY = targetY;
                 }
