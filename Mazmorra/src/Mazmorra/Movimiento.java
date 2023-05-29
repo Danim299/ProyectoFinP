@@ -63,7 +63,7 @@ public class Movimiento{
         return finalY;
     }
     public boolean getPasar(){
-        if(getFinalX()>750){finalizado=false;}
+        if(getFinalX()>980){finalizado=false;}
         return finalizado;
     }
     
@@ -82,7 +82,7 @@ public class Movimiento{
         private double startX, startY;
         private double runTime;
         public TestPane() {
-            champion = new Rectangle(95, 95, 90, 90);
+            champion = new Rectangle(498, 652, 100, 100);
             championImage = new ImageIcon("./Mazmorra/img/personajeCorrer.gif").getImage();
             addMouseListener(new MouseAdapter() {
                 @Override
@@ -117,7 +117,7 @@ public class Movimiento{
 
                     // x/y are the center points, need to adjust them so the shape
                     // moves about the center point
-                    champion.setRect(x - 5, y - 5, 90, 90);
+                    champion.setRect(x - 5, y - 5, 100, 100);
                     repaint();
                 }
             });
@@ -141,6 +141,7 @@ public class Movimiento{
         }
         public void paint(Graphics g) {
             imagen = new ImageIcon("./Mazmorra/img/fondo.jpg");
+            
             g.drawImage(imagen.getImage(), 0, 0, getWidth(), getHeight(),this);
             
             setOpaque(false);
@@ -171,7 +172,7 @@ public class Movimiento{
 
                 System.out.println(targetX);
                 System.out.println(targetY);
-                if(targetX>750){
+                if(targetX>980){
                     finalizado=false;
                     tp.setVisible(false);
                     tp.remove(tp);

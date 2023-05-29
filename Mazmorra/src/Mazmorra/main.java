@@ -45,12 +45,12 @@ public class main {
 
         Movimiento m = new Movimiento();
         try{
-            Thread.sleep(1000);        
+            Thread.sleep(1000);
         }catch(Exception e){};
 
         System.out.println();
             while(m.getPasar()) {
-                System.out.println(); 
+                System.out.println();
             }
             
             System.out.println(m.getFinalX()+" y "+ m.getFinalY());
