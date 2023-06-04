@@ -85,10 +85,10 @@ public class main {
                         int opc3 = JOptionPane.showOptionDialog(null, "Sales de la aldea y te topas con la siguiente mazmorra: "+dg2.getNombre(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, templo, botonesE, botonesE);
                         if(opc3==0){
                             es.setDurabilidad(es.getDurabilidad()-1);
-                            int opc4 =  opc4 = JOptionPane.showOptionDialog(null, "Comienzas andar por dentro de la mazmorra y te encuentras a su jefe, Hotaru Haganezuka", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesE, botonesE);
+                            int opc4 = JOptionPane.showOptionDialog(null, "Comienzas andar por dentro de la mazmorra y te encuentras a su jefe, Hotaru Haganezuka", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesE, botonesE);
                             if(opc4==0){
                                 opc4 = JOptionPane.showOptionDialog(null, "Sacas tu espada, comienza una batalla intensa y larga, pero que consigues superar\nDurabilidad = "+es.getDurabilidad(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesF, botonesF);
-                                opc4 = JOptionPane.showOptionDialog(null, "Sales de la mazmorra y continuas tranquilamente tu camino", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, personajeCorrer, botonesF, botonesF);
+                                opc4 = JOptionPane.showOptionDialog(null, "Sales de la mazmorra y continuas tu camino hacia el castillo", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, personajeCorrer, botonesF, botonesF);
                             }
                             else if(opc4==1){
                                 finJuego();
