@@ -66,6 +66,7 @@ public class Movimiento{
         if(getFinalX()>980){finalizado=false;}
         return finalizado;
     }
+
     
 
     public class TestPane extends JPanel {
@@ -115,8 +116,6 @@ public class Movimiento{
                     double x = (int) (startX + ((targetX - startX) * progress));
                     double y = (int) (startY + ((targetY - startY) * progress));
 
-                    // x/y are the center points, need to adjust them so the shape
-                    // moves about the center point
                     champion.setRect(x - 5, y - 5, 100, 100);
                     repaint();
                 }
