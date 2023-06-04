@@ -9,5 +9,10 @@ package Mazmorra;
  * @author admin
  */
 public class dungeon2 {
-    
+    private String nombre;
+
+    public String getNombre() {
+        nombre = "Templo Hotaru";
+        return nombre;
+    }
 }

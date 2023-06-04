@@ -11,6 +11,7 @@ public class main {
 
     public static void main(String[] args) {
         dungeon1 d = new dungeon1();
+        dungeon2 dg2 = new dungeon2();
         final ImageIcon icon = new ImageIcon("./Mazmorra/img/Anubis.png");
         final ImageIcon personaje = new ImageIcon("./Mazmorra/img/personaje.png");
         final ImageIcon azaTun = new ImageIcon("./Mazmorra/img/tunicaAzada.png");
@@ -18,6 +19,9 @@ public class main {
         final ImageIcon hablar = new ImageIcon("./Mazmorra/img/hablar2.gif");
         final ImageIcon espada = new ImageIcon("./Mazmorra/img/espada.png");
         final ImageIcon enemigo1 = new ImageIcon("./Mazmorra/img/enemigo1.png");
+        final ImageIcon enemigo2 = new ImageIcon("./Mazmorra/img/enemigo2.png");
+        final ImageIcon templo = new ImageIcon("./Mazmorra/img/templo.png");
+        final ImageIcon enemigo3 = new ImageIcon("./Mazmorra/img/enemigo3.png");
         final ImageIcon personajeCorrer = new ImageIcon("./Mazmorra/img/personajeCorrer.gif");
         final ImageIcon yayo = new ImageIcon("./Mazmorra/img/yayo.png");
         ArrayList obJugador = new ArrayList();
@@ -78,6 +82,25 @@ public class main {
                             az.setDurabilidad(az.getDurabilidad()-1);
                             opc2 = JOptionPane.showOptionDialog(null, "El jefe tiene una sonrisa de oreja a oreja, pero no te da nada a cambio\nDurabilidad = "+az.getDurabilidad(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, yayo, botonesF, botonesF);
                         }
+                        int opc3 = JOptionPane.showOptionDialog(null, "Sales de la aldea y te topas con la siguiente mazmorra: "+dg2.getNombre(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, templo, botonesE, botonesE);
+                        if(opc3==0){
+                            es.setDurabilidad(es.getDurabilidad()-1);
+                            int opc4 =  opc4 = JOptionPane.showOptionDialog(null, "Comienzas andar por dentro de la mazmorra y te encuentras a su jefe, Hotaru Haganezuka", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesE, botonesE);
+                            if(opc4==0){
+                                opc4 = JOptionPane.showOptionDialog(null, "Sacas tu espada, comienza una batalla intensa y larga, pero que consigues superar\nDurabilidad = "+es.getDurabilidad(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesF, botonesF);
+                                opc4 = JOptionPane.showOptionDialog(null, "Sales de la mazmorra y continuas tranquilamente tu camino", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, personajeCorrer, botonesF, botonesF);
+                            }
+                            else if(opc4==1){
+                                finJuego();
+                            }
+                        }else if(opc3==1){
+                            finJuego();
+                        }
+
+
+
+
+
                     }else if(espa==1){
                         az.setDurabilidad(az.getDurabilidad()-2);
                         int opc2 = JOptionPane.showOptionDialog(null, "Golpeas con todas tus fuerzas al jefe con la azada\n(La durabilidad de tu azada baja 2 puntos)\nDurabilidad = "+az.getDurabilidad(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo1, botonesF, botonesF);
@@ -87,8 +110,20 @@ public class main {
                             az.setDurabilidad(az.getDurabilidad()-1);
                             opc2 = JOptionPane.showOptionDialog(null, "El jefe tiene una sonrisa de oreja a oreja, pero no te da nada a cambio\nDurabilidad = "+az.getDurabilidad(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, yayo, botonesF, botonesF);
                         }
-                        int opc3 = JOptionPane.showOptionDialog(null, "Golpeas con todas tus fuerzas al jefe con la azada\n(La durabilidad de tu azada baja 2 puntos)\nDurabilidad = "+az.getDurabilidad(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo1, botonesF, botonesF);
+                        int opc3 = JOptionPane.showOptionDialog(null, "Sales de la aldea y te topas con la siguiente mazmorra: "+dg2.getNombre(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, templo, botonesE, botonesE);
+                        if(opc3==0){
+                            az.setDurabilidad(az.getDurabilidad()-2);
+                            int opc4 = JOptionPane.showOptionDialog(null, "Sacas tu espada, comienza una batalla intensa y larga, pero que consigues superar\nDurabilidad = "+az.getDurabilidad(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesF, botonesF);
+                        }else if(opc3==1){
+                            finJuego();
+                        }
                     }
+
+
+
+
+
+
                 }else if (opc1 == 1){
                     finJuego1();
                 }
