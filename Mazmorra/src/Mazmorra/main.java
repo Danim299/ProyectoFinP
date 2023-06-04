@@ -12,6 +12,7 @@ public class main {
     public static void main(String[] args) {
         dungeon1 d = new dungeon1();
         dungeon2 dg2 = new dungeon2();
+        dungeon3 d3 = new dungeon3();
         final ImageIcon icon = new ImageIcon("./Mazmorra/img/Anubis.png");
         final ImageIcon personaje = new ImageIcon("./Mazmorra/img/personaje.png");
         final ImageIcon azaTun = new ImageIcon("./Mazmorra/img/tunicaAzada.png");
@@ -21,7 +22,9 @@ public class main {
         final ImageIcon enemigo1 = new ImageIcon("./Mazmorra/img/enemigo1.png");
         final ImageIcon enemigo2 = new ImageIcon("./Mazmorra/img/enemigo2.png");
         final ImageIcon templo = new ImageIcon("./Mazmorra/img/templo.png");
-        final ImageIcon enemigo3 = new ImageIcon("./Mazmorra/img/enemigo3.png");
+        final ImageIcon ruinas = new ImageIcon("./Mazmorra/img/ruinas.png");
+        final ImageIcon enemigo3 = new ImageIcon("./Mazmorra/img/mikey.png");
+        final ImageIcon castillo = new ImageIcon("./Mazmorra/img/castillo.png");
         final ImageIcon personajeCorrer = new ImageIcon("./Mazmorra/img/personajeCorrer.gif");
         final ImageIcon yayo = new ImageIcon("./Mazmorra/img/yayo.png");
         ArrayList obJugador = new ArrayList();
@@ -34,6 +37,7 @@ public class main {
         String[] botonesE = {"Luchar", "Huir"};
         String[] botonesF = {"Continuar"};
         String[] botonesG = {"Ayudar al yayo","Continuar"};
+        String[] botonesFin = {"FIN"};
         String[] botones = {"Vamos!","Mejor no"};
         
         
@@ -89,6 +93,17 @@ public class main {
                             if(opc4==0){
                                 opc4 = JOptionPane.showOptionDialog(null, "Sacas tu espada, comienza una batalla intensa y larga, pero que consigues superar\nDurabilidad = "+es.getDurabilidad(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesF, botonesF);
                                 opc4 = JOptionPane.showOptionDialog(null, "Sales de la mazmorra y continuas tu camino hacia el castillo", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, personajeCorrer, botonesF, botonesF);
+                                
+                                int opc5 = JOptionPane.showOptionDialog(null, "Sales del templo, descansas en un pequeño campamento cercano y continuas al día siguiente hacia la siguiente mazmorra: "+d3.getNombre(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, ruinas, botonesE, botonesE);
+                                if(opc5==0){
+                                    es.setDurabilidad(es.getDurabilidad()-1);
+                                    opc5 = JOptionPane.showOptionDialog(null, "Caminas y caminas sobre las ruinas hasta que te topas con el jefe, Manjiro Sano", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesF, botonesF);
+                                    opc5 = JOptionPane.showOptionDialog(null, "Sacas tu espada y combates contra mikey, le abates y continuas hacia el castillo", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesF, botonesF);
+                                    JOptionPane.showOptionDialog(null,"Has llegado al castillo de Dunstaffnage\naqui concluye tu aventura llena de riesgos","Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, castillo, botonesFin, botonesFin);
+                                }
+                                else if(opc5==1){
+                                    finJuego1();
+                                }
                             }
                             else if(opc4==1){
                                 finJuego();
@@ -113,16 +128,28 @@ public class main {
                         int opc3 = JOptionPane.showOptionDialog(null, "Sales de la aldea y te topas con la siguiente mazmorra: "+dg2.getNombre(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, templo, botonesE, botonesE);
                         if(opc3==0){
                             az.setDurabilidad(az.getDurabilidad()-2);
-                            int opc4 = JOptionPane.showOptionDialog(null, "Sacas tu espada, comienza una batalla intensa y larga, pero que consigues superar\nDurabilidad = "+az.getDurabilidad(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesF, botonesF);
+                            int opc4 = JOptionPane.showOptionDialog(null, "Comienzas andar por dentro de la mazmorra y te encuentras a su jefe, Hotaru Haganezuka", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesE, botonesE);
+                            if(opc4==0){
+                                opc4 = JOptionPane.showOptionDialog(null, "Sacas tu azada, comienza una batalla intensa y larga, pero que consigues superar a duras penas\nDurabilidad = "+az.getDurabilidad(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesF, botonesF);
+                                opc4 = JOptionPane.showOptionDialog(null, "Sales de la mazmorra y continuas tu camino hacia el castillo", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, personajeCorrer, botonesF, botonesF);
+                                
+                                int opc5 = JOptionPane.showOptionDialog(null, "Sales del templo, descansas en un pequeño campamento cercano y continuas al día siguiente hacia la siguiente mazmorra: "+d3.getNombre(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, ruinas, botonesE, botonesE);
+                                if(opc5==0){
+                                    opc5 = JOptionPane.showOptionDialog(null, "Caminas y caminas sobre las ruinas hasta que te topas con el jefe, Manjiro Sano", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesF, botonesF);
+                                    opc5 = JOptionPane.showOptionDialog(null, "Peleas hasta quedarte sin aliento, por lo que mikey te asesta una patada con todas sus fuerzas...", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesF, botonesF);
+                                    finJuego();
+                                }
+                                else if(opc5==1){
+                                    finJuego1();
+                                }
+                            }
+                            else if(opc4==1){
+                                finJuego1();
+                            }
                         }else if(opc3==1){
-                            finJuego();
+                            finJuego1();
                         }
                     }
-
-
-
-
-
 
                 }else if (opc1 == 1){
                     finJuego1();
