@@ -21,5 +21,8 @@ public class azada {
         this.ataque = ataque;
         this.durabilidad = durabilidad;
     }
+    public void setDurabilidad(int durabilidad) {
+        this.durabilidad = durabilidad;
+    }
     
 }
