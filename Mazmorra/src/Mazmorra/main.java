@@ -40,7 +40,8 @@ public class main {
         String[] botonesFin = {"FIN"};
         String[] botones = {"Vamos!","Mejor no"};
         
-        
+        vida vida = new vida(100);
+
         int listo = JOptionPane.showOptionDialog(null, "Te levantas por la mañana y te encuentras con una misteriosa carta en la cual te citan para acudir a Dunstaffnage\nPero no todo son buenas noticias, porque para llegar hasta allí necesitas atravesar 3 mazmorras", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, personaje, botonesInicio, null);
 
         listo = JOptionPane.showOptionDialog(null, "Buscas por casa y lo único que encuentras es una vieja túnica y una azada", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, azaTun, botonesA, null);
@@ -79,7 +80,9 @@ public class main {
                 if(opc1==0){
                     if(espa==0){
                         es.setDurabilidad(es.getDurabilidad()-1);
-                        int opc2 = JOptionPane.showOptionDialog(null, "Blandes tu espada y le asestas un golpe para acabar con él\n(La durabilidad de tu espada baja 2 puntos)\nDurabilidad = "+es.getDurabilidad(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo1, botonesF, botonesF);
+                        int opc2 = JOptionPane.showOptionDialog(null, "Blandes tu espada y le asestas un golpe para acabar con él\n(La durabilidad de tu espada baja 2 puntos)\nDurabilidad = "+es.getDurabilidad()+"\nVida Restante: "+vida.getVida(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo1, botonesF, botonesF);
+                        vida.setVida(vida.getVida()-20);
+                        opc2 = JOptionPane.showOptionDialog(null, "El bicho se defiende y te golpea, en consecuencia pierdes 20 de vida"+vida.getVida(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, null, botonesF, botonesF);
                         opc2 = JOptionPane.showOptionDialog(null, "Sales de la mazmorra y continuas tranquilamente tu camino", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, personajeCorrer, botonesF, botonesF);
                         opc2 = JOptionPane.showOptionDialog(null, "Llegas a una pequeña aldea y resulta que al jefe de la aldea se le ha roto la azada\nquieres ayudarle con la tuya?(perderás durabilidad)", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, personajeCorrer, botonesG, botonesG);
                         if(opc2==0){
