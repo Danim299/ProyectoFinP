@@ -50,7 +50,7 @@ public class main {
         tunica tu = new tunica();
         azada az = new azada(3, 10);
         espada es = new espada(7, 10);
-        espada espadaNueva = new espada(15,20);
+        espada espadaNueva = null;
         obJugador.add(tu);
         obJugador.add(az);
         listo = JOptionPane.showOptionDialog(null, "Al salir de casa te das cuenta de que tu tio el herrero podría tener algo para ti", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, pensar, botonesB, null);
@@ -93,23 +93,24 @@ public class main {
                             az.setDurabilidad(az.getDurabilidad()-1);
                             opc2 = JOptionPane.showOptionDialog(null, "El jefe tiene una sonrisa de oreja a oreja\nDurabilidad = "+az.getDurabilidad(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, yayo, botonesF, botonesF);
                             vida.setVida(100);
-                            opc2 = JOptionPane.showOptionDialog(null, "Como has sido tan majo con el yayo te cura las heridas producidas por el bicho feo de la mazmorra\nVida: "+vida.getVida(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, cura, botonesG, botonesG);
+                            opc2 = JOptionPane.showOptionDialog(null, "Como has sido tan majo con el yayo te cura las heridas producidas por el bicho feo de la mazmorra\nVida: "+vida.getVida(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, cura, botonesF, botonesF);
                         }
                         int opc3 = JOptionPane.showOptionDialog(null, "Sales de la aldea y te topas con la siguiente mazmorra: "+dg2.getNombre(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, templo, botonesE, botonesE);
                         if(opc3==0){
                             es.setDurabilidad(es.getDurabilidad()-1);
                             int opc4 = JOptionPane.showOptionDialog(null, "Comienzas andar por dentro de la mazmorra y te encuentras a su jefe, Hotaru Haganezuka", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesE, botonesE);
                             if(opc4==0){
-                                vida.setVida(vida.getVida()-40);
+                                vida.setVida(vida.getVida()-20);
                                 opc4 = JOptionPane.showOptionDialog(null, "Hotaru te asesta el primer golpe ya que es un herrero mazado y rápido\nDurabilidad = "+es.getDurabilidad()+"\nVida"+vida.getVida(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesF, botonesF);
-                                opc4 = JOptionPane.showOptionDialog(null, "Seguidamente sacas tu espada para combartirle\nDurabilidad = "+es.getDurabilidad(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesF, botonesF);
-                                opc4 = JOptionPane.showOptionDialog(null, "Hotaru al ver tu potencial se ofrece a hacerte una espada para ti", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesD, botonesD);
+                                opc4 = JOptionPane.showOptionDialog(null, "Hotaru al ver tu potencial combatiendo se ofrece a hacerte una espada para ti", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesD, botonesD);
                                 if(opc4==0){
                                     espadaNueva = new espada(15,20);
                                 }
-                                if(espadaNueva!=null){obJugador.add(espadaNueva);}
+                                if(espadaNueva!=null){obJugador.add(espadaNueva);
                                 JOptionPane.showMessageDialog(null, "Enhorabuena tienes tu nueva espada :D");
-                                opc4 = JOptionPane.showOptionDialog(null, "Sales de la mazmorra y continuas tu camino hacia el castillo", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, personajeCorrer, botonesF, botonesF);
+                                }
+                                
+                                
                                 
                                 int opc5 = JOptionPane.showOptionDialog(null, "Sales del templo, descansas en un pequeño campamento cercano y continuas al día siguiente hacia la siguiente mazmorra: "+d3.getNombre(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, ruinas, botonesE, botonesE);
                                 if(opc5==0){
@@ -131,7 +132,24 @@ public class main {
                                             }
                                         }else{
                                             JOptionPane.showMessageDialog(null, "Ganas tú, Manjiro como dijo te deja pasar");
-                                            JOptionPane.showOptionDialog(null,"Has llegado al castillo de Dunstaffnage\naqui concluye tu aventura llena de riesgos","Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, castillo, botonesFin, botonesFin);
+                                            JOptionPane.showOptionDialog(null,"Superaste a Manjiro, continuas y...\nHas llegado al castillo de Dunstaffnage sano y salvo, ten cuidado al volver aventurero...","Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, castillo, botonesFin, botonesFin);
+                                        }
+                                    }else if(opc5==1){
+                                        vida vidaManjiro = new vida(100);
+                                        int vidaMenosManjiro = (int)(Math.random()*9)+1;
+                                        int randomAventurero = (int)(Math.random()*99)+1;
+                                        int opc6=0;
+                                        while(vidaManjiro.getVida()>0 || vida.getVida()>0){
+                                            opc6 = JOptionPane.showOptionDialog(null, "Vida restante Manjiro: "+vidaManjiro.getVida()+"\nVida restante Aventurero: "+vida.getVida(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesE, botonesE);
+                                            vidaMenosManjiro = (int)(Math.random()*9)+1;
+                                            randomAventurero = (int)(Math.random()*99)+1;
+                                            vidaManjiro.setVida(vidaManjiro.getVida()-randomAventurero);
+                                            vida.setVida(vida.getVida()-vidaMenosManjiro);
+                                            if(vida.getVida()<=0){finJuego();break;}
+                                            else if(vidaManjiro.getVida()<0){
+                                                JOptionPane.showOptionDialog(null,"Superaste a Manjiro, continuas y...\nHas llegado al castillo de Dunstaffnage sano y salvo, ten cuidado al volver aventurero...","Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, castillo, botonesFin, botonesFin);
+                                                break;}
+                                            if(opc6==1){finJuego1();break;}
                                         }
                                     }
                                 }
@@ -161,19 +179,27 @@ public class main {
                             az.setDurabilidad(az.getDurabilidad()-1);
                             opc2 = JOptionPane.showOptionDialog(null, "El jefe tiene una sonrisa de oreja a oreja\nDurabilidad= "+az.getDurabilidad(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, yayo, botonesF, botonesF);
                             vida.setVida(100);
-                            opc2 = JOptionPane.showOptionDialog(null, "Como has sido tan majo con el yayo te cura las heridas producidas por el bicho feo de la mazmorra\nVida: "+vida.getVida(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, cura, botonesG, botonesG);
+                            opc2 = JOptionPane.showOptionDialog(null, "Como has sido tan majo con el yayo te cura las heridas producidas por el bicho feo de la mazmorra\nVida: "+vida.getVida(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, cura, botonesF, botonesF);
                         }
                         int opc3 = JOptionPane.showOptionDialog(null, "Sales de la aldea y te topas con la siguiente mazmorra: "+dg2.getNombre(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, templo, botonesE, botonesE);
                         if(opc3==0){
-                            az.setDurabilidad(az.getDurabilidad()-2);
+                            az.setDurabilidad(es.getDurabilidad()-1);
                             int opc4 = JOptionPane.showOptionDialog(null, "Comienzas andar por dentro de la mazmorra y te encuentras a su jefe, Hotaru Haganezuka", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesE, botonesE);
                             if(opc4==0){
-                                opc4 = JOptionPane.showOptionDialog(null, "Sacas tu azada, comienza una batalla intensa y larga, pero que consigues superar a duras penas\nDurabilidad = "+az.getDurabilidad(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesF, botonesF);
-                                opc4 = JOptionPane.showOptionDialog(null, "Sales de la mazmorra y continuas tu camino hacia el castillo", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, personajeCorrer, botonesF, botonesF);
+                                vida.setVida(vida.getVida()-20);
+                                opc4 = JOptionPane.showOptionDialog(null, "Hotaru te asesta el primer golpe ya que es un herrero mazado y rápido\nDurabilidad = "+es.getDurabilidad()+"\nVida"+vida.getVida(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesF, botonesF);
+                                opc4 = JOptionPane.showOptionDialog(null, "Hotaru al ver tu potencial combatiendo se ofrece a hacerte una espada para ti", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesD, botonesD);
+                                if(opc4==0){
+                                    espadaNueva = new espada(15,20);
+                                }
+                                if(espadaNueva!=null){obJugador.add(espadaNueva);
+                                    JOptionPane.showMessageDialog(null, "Enhorabuena tienes tu nueva espada :D");
+                                }
                                 
+                        
                                 int opc5 = JOptionPane.showOptionDialog(null, "Sales del templo, descansas en un pequeño campamento cercano y continuas al día siguiente hacia la siguiente mazmorra: "+d3.getNombre(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, ruinas, botonesE, botonesE);
                                 if(opc5==0){
-                                    es.setDurabilidad(es.getDurabilidad()-1);
+                                    az.setDurabilidad(es.getDurabilidad()-1);
                                     opc5 = JOptionPane.showOptionDialog(null, "Caminas y caminas sobre las ruinas hasta que te topas con, Manjiro Sano", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesF, botonesF);
                                     opc5 = JOptionPane.showOptionDialog(null, "Manjiro te propone sacar un dado para ver si peleais o te deja pasar", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesH, botonesH);
                                     if(opc5==0){
@@ -191,11 +217,27 @@ public class main {
                                             }
                                         }else{
                                             JOptionPane.showMessageDialog(null, "Ganas tú, Manjiro como dijo te deja pasar");
-                                            JOptionPane.showOptionDialog(null,"Has llegado al castillo de Dunstaffnage\naqui concluye tu aventura llena de riesgos","Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, castillo, botonesFin, botonesFin);
+                                            JOptionPane.showOptionDialog(null,"Superaste a Manjiro, continuas y...\nHas llegado al castillo de Dunstaffnage sano y salvo, ten cuidado al volver aventurero...","Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, castillo, botonesFin, botonesFin);
                                         }
                                     }
                                 else if(opc5==1){
-                                    finJuego1();
+                                    vida vidaManjiro = new vida(100);
+                                    int vidaMenosManjiro = (int)(Math.random()*9)+1;
+                                    int randomAventurero = (int)(Math.random()*99)+1;
+                                    int opc6=0;
+                                    while(vidaManjiro.getVida()>0 || vida.getVida()>0){
+                                        opc6 = JOptionPane.showOptionDialog(null, "Vida restante Manjiro: "+vidaManjiro.getVida()+"\nVida restante Aventurero: "+vida.getVida(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesE, botonesE);
+                                        vidaMenosManjiro = (int)(Math.random()*9)+1;
+                                        randomAventurero = (int)(Math.random()*99)+1;
+                                        vidaManjiro.setVida(vidaManjiro.getVida()-randomAventurero);
+                                        vida.setVida(vida.getVida()-vidaMenosManjiro);
+                                        if(vida.getVida()<=0){finJuego(); break;}
+                                        else if(vidaManjiro.getVida()<0){
+                                            JOptionPane.showOptionDialog(null,"Superaste a Manjiro, continuas y...\nHas llegado al castillo de Dunstaffnage sano y salvo, ten cuidado al volver aventurero...","Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, castillo, botonesFin, botonesFin);
+                                            break;
+                                        }
+                                        if(opc6==1){finJuego1();break;}
+                                    }
                                 }
                             }
                             else if(opc4==1){
