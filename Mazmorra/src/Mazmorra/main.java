@@ -140,7 +140,7 @@ public class main {
                                         }
                                     }else if(opc5==1){
                                         vida vidaManjiro = new vida(100);
-                                        int vidaMenosManjiro = (int)(Math.random()*9)+1;
+                                        int vidaMenosManjiro = (int)(Math.random()*99)+1;
                                         int randomAventurero = (int)(Math.random()*99)+1;
                                         int opc6=0;
                                         while(vidaManjiro.getVida()>0 || vida.getVida()>0){
@@ -233,12 +233,12 @@ public class main {
                                     }
                                 else if(opc5==1){
                                     vida vidaManjiro = new vida(100);
-                                    int vidaMenosManjiro = (int)(Math.random()*9)+1;
+                                    int vidaMenosManjiro = (int)(Math.random()*99)+1;
                                     int randomAventurero = (int)(Math.random()*99)+1;
                                     int opc6=0;
                                     while(vidaManjiro.getVida()>0 || vida.getVida()>0){
                                         opc6 = JOptionPane.showOptionDialog(null, "Vida restante Manjiro: "+vidaManjiro.getVida()+"\nVida restante Aventurero: "+vida.getVida(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesE, botonesE);
-                                        vidaMenosManjiro = (int)(Math.random()*9)+1;
+                                        vidaMenosManjiro = (int)(Math.random()*99)+1;
                                         randomAventurero = (int)(Math.random()*99)+1;
                                         vidaManjiro.setVida(vidaManjiro.getVida()-randomAventurero);
                                         vida.setVida(vida.getVida()-vidaMenosManjiro);
