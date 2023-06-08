@@ -1,16 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package Mazmorra;
 
-/**
- *
- * @author admin
- */
+package Mazmorra;
 public class azada {
     private int ataque;
     private int durabilidad;
+    private String nombre="Azada de hierro";
     public int getAtaque() {
         return ataque;
     }
@@ -23,6 +16,9 @@ public class azada {
     }
     public void setDurabilidad(int durabilidad) {
         this.durabilidad = durabilidad;
+    }
+    public String getNombre() {
+        return nombre;
     }
     
 }

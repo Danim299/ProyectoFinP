@@ -4,7 +4,12 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import Mazmorra.Movimiento.TestPane;
 
 public class main {
@@ -29,7 +34,7 @@ public class main {
         final ImageIcon cura = new ImageIcon("./Mazmorra/img/cura.png");
         final ImageIcon personajeCorrer = new ImageIcon("./Mazmorra/img/personajeCorrer.gif");
         final ImageIcon yayo = new ImageIcon("./Mazmorra/img/yayo.png");
-        ArrayList obJugador = new ArrayList();
+        ArrayList <String> obJugador = new ArrayList();
         int espa=1;
 
         //Creacion de botones
@@ -54,15 +59,15 @@ public class main {
         azada az = new azada(3, 10);
         espada es = new espada(7, 10);
         espada espadaNueva = null;
-        obJugador.add(tu);
-        obJugador.add(az);
+        obJugador.add(tu.getNombre());
+        obJugador.add(az.getNombre());
         listo = JOptionPane.showOptionDialog(null, "Al salir de casa te das cuenta de que tu tio el herrero podría tener algo para ti", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, pensar, botonesB, null);
         
         if (listo==0){
              listo = JOptionPane.showOptionDialog(null, "Llegas y mantienes una larga conversacion con tu tio contando la situación acompañado por un café solo con hielo y una crema de orujo", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, hablar, botonesC, null);
              espa = JOptionPane.showOptionDialog(null, "Resulta que tu tío te da una espada con unas runas talladas", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, espada, botonesD, null);
                 if(espa==0){
-                    obJugador.add(es);
+                    obJugador.add(es.getNombre());
                 }
             }
 
@@ -97,15 +102,16 @@ public class main {
                         int opc3 = JOptionPane.showOptionDialog(null, "Sales de la aldea y te topas con la siguiente mazmorra: "+dg2.getNombre(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, templo, botonesE, botonesE);
                         if(opc3==0){
                             es.setDurabilidad(es.getDurabilidad()-1);
-                            int opc4 = JOptionPane.showOptionDialog(null, "Comienzas andar por dentro de la mazmorra y te encuentras a su jefe, Hotaru Haganezuka", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesE, botonesE);
+                            int opc4 = JOptionPane.showOptionDialog(null, "Comienzas andar por dentro de la mazmorra y te encuentras a su jefe, Hotaru Haganezuka", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesF, botonesF);
                             if(opc4==0){
                                 vida.setVida(vida.getVida()-20);
                                 opc4 = JOptionPane.showOptionDialog(null, "Hotaru te asesta el primer golpe ya que es un herrero mazado y rápido"+"\nVida"+vida.getVida(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesF, botonesF);
-                                opc4 = JOptionPane.showOptionDialog(null, "Hotaru al ver tu potencial combatiendo se ofrece a hacerte una espada para ti", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesD, botonesD);
+                                vida.setVida(100);
+                                opc4 = JOptionPane.showOptionDialog(null, "Hotaru al ver tu potencial combatiendo se ofrece hacerte una espada para ti\nComo es un señor un poco loco pero majo, también te cura", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesD, botonesD);
                                 if(opc4==0){
                                     espadaNueva = new espada(15,20);
                                 }
-                                if(espadaNueva!=null){obJugador.add(espadaNueva);
+                                if(espadaNueva!=null){obJugador.add(espadaNueva.getNombre());
                                 JOptionPane.showMessageDialog(null, "Enhorabuena tienes tu nueva espada :D");
                                 }
                                 
@@ -187,7 +193,7 @@ public class main {
                                 }
                             }
                             if(opc4==1){
-                                finJuego1();
+                                if(espadaNueva!=null){finJuego1();}
                             }
                         }if(opc3==1){
                             finJuego1();
@@ -213,15 +219,16 @@ public class main {
                         int opc3 = JOptionPane.showOptionDialog(null, "Sales de la aldea y te topas con la siguiente mazmorra: "+dg2.getNombre(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, templo, botonesE, botonesE);
                         if(opc3==0){
                             az.setDurabilidad(es.getDurabilidad()-1);
-                            int opc4 = JOptionPane.showOptionDialog(null, "Comienzas andar por dentro de la mazmorra y te encuentras a su jefe, Hotaru Haganezuka", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesE, botonesE);
+                            int opc4 = JOptionPane.showOptionDialog(null, "Comienzas andar por dentro de la mazmorra y te encuentras a su jefe, Hotaru Haganezuka", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesF, botonesF);
                             if(opc4==0){
                                 vida.setVida(vida.getVida()-20);
                                 opc4 = JOptionPane.showOptionDialog(null, "Hotaru te asesta el primer golpe ya que es un herrero mazado y rápido"+"\nVida"+vida.getVida(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesF, botonesF);
-                                opc4 = JOptionPane.showOptionDialog(null, "Hotaru al ver tu potencial combatiendo se ofrece a hacerte una espada para ti", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesD, botonesD);
+                                vida.setVida(100);
+                                opc4 = JOptionPane.showOptionDialog(null, "Hotaru al ver tu potencial combatiendo se ofrece hacerte una espada para ti\nComo es un señor un poco loco pero majo, también te cura", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesD, botonesD);
                                 if(opc4==0){
                                     espadaNueva = new espada(15,20);
                                 }
-                                if(espadaNueva!=null){obJugador.add(espadaNueva);
+                                if(espadaNueva!=null){obJugador.add(espadaNueva.getNombre());
                                     JOptionPane.showMessageDialog(null, "Enhorabuena tienes tu nueva espada :D");
                                 }
                                 
@@ -272,7 +279,7 @@ public class main {
                                     }
                                 else if(opc5==1){
                                     vida vidaManjiro = new vida(100);
-                                    int vidaMenosManjiro = (int)(Math.random()*15)+1;
+                                    int vidaMenosManjiro = (int)(Math.random()*9)+1;
                                     int randomAventurero = 0;
                                     if(obJugador.contains(espadaNueva)){
                                         randomAventurero = (int)(Math.random()*espadaNueva.getAtaque())+1;
@@ -302,7 +309,7 @@ public class main {
                                 }
                             }
                             if(opc4==1){
-                                finJuego1();
+                                if(espadaNueva!=null){finJuego1();}
                             }
                         }if(opc3==1){
                             finJuego1();
@@ -314,6 +321,51 @@ public class main {
                 }
             }if (opc==1){
                 JOptionPane.showOptionDialog(null,"Te das media vuelta y a casa con el recado","Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, null, botonesFin, botonesFin);
+            }
+        }
+        Connection connection = null;
+        PreparedStatement statement = null;
+        
+        try {
+            // Cargar el controlador JDBC
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        
+            // Establecer conexión
+            String url = "jdbc:mysql://localhost:3306/MazmorraSQL";
+            String username = "root";
+            String password = "root";
+            connection = DriverManager.getConnection(url, username, password);
+        
+            // Preparar consulta SQL
+            String insertarElemento = "INSERT INTO ObjetosJugador (nombre) VALUES (?)";
+            statement = connection.prepareStatement(insertarElemento);
+        
+            // Insertar elementos en la base de datos
+            for (String nombre : obJugador) {
+                statement.setString(1, nombre);
+                statement.executeUpdate();
+            }
+        
+            // Cerrar el statement
+            statement.close();
+        
+            // Cerrar la conexión
+            connection.close();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                // Cerrar el statement y la conexión en caso de error
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
