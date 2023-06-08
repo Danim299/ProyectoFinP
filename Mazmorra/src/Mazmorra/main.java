@@ -10,6 +10,7 @@ import Mazmorra.Movimiento.TestPane;
 public class main {
 
     public static void main(String[] args) {
+        //Asignacion de variables
         dungeon1 d = new dungeon1();
         dungeon2 dg2 = new dungeon2();
         dungeon3 d3 = new dungeon3();
@@ -30,6 +31,8 @@ public class main {
         final ImageIcon yayo = new ImageIcon("./Mazmorra/img/yayo.png");
         ArrayList obJugador = new ArrayList();
         int espa=1;
+
+        //Creacion de botones
         String[] botonesInicio = {"Nos preparamos?"};
         String[] botonesA = {"Ir hacia la puerta"};
         String[] botonesB = {"Ir a la herreria", "Continuar con el viaje"};
@@ -97,7 +100,7 @@ public class main {
                             int opc4 = JOptionPane.showOptionDialog(null, "Comienzas andar por dentro de la mazmorra y te encuentras a su jefe, Hotaru Haganezuka", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesE, botonesE);
                             if(opc4==0){
                                 vida.setVida(vida.getVida()-20);
-                                opc4 = JOptionPane.showOptionDialog(null, "Hotaru te asesta el primer golpe ya que es un herrero mazado y rápido\nDurabilidad = "+es.getDurabilidad()+"\nVida"+vida.getVida(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesF, botonesF);
+                                opc4 = JOptionPane.showOptionDialog(null, "Hotaru te asesta el primer golpe ya que es un herrero mazado y rápido"+"\nVida"+vida.getVida(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesF, botonesF);
                                 opc4 = JOptionPane.showOptionDialog(null, "Hotaru al ver tu potencial combatiendo se ofrece a hacerte una espada para ti", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesD, botonesD);
                                 if(opc4==0){
                                     espadaNueva = new espada(15,20);
@@ -114,18 +117,29 @@ public class main {
                                     opc5 = JOptionPane.showOptionDialog(null, "Caminas y caminas sobre las ruinas hasta que te topas con, Manjiro Sano", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesF, botonesF);
                                     opc5 = JOptionPane.showOptionDialog(null, "Manjiro te propone sacar un dado para ver si peleais o te deja pasar", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesH, botonesH);
                                     if(opc5==0){
+                                        //Dados
                                         double randomManjiro = Math.random()*5.99+1;
                                         double randomAventurero = Math.random()*5.99+1;
+
                                         if(randomManjiro>randomAventurero){
                                             JOptionPane.showMessageDialog(null, "Manjiro gana los dados, te toca pelear");
                                             vida vidaManjiro = new vida(100);
-                                            int vidaMenosManjiro = (int)(Math.random()*99)+1;
-                                            int randomAventureroLucha = (int)(Math.random()*99)+1;
+                                            int vidaMenosManjiro = (int)(Math.random()*9)+1;
+                                            int randomAventureroLucha = 0;
+                                            if(obJugador.contains(espadaNueva)){
+                                                randomAventureroLucha = (int)(Math.random()*espadaNueva.getAtaque())+1;
+                                            }else{
+                                                randomAventureroLucha = (int)(Math.random()*es.getAtaque())+1;
+                                            }
                                             int opc6=0;
                                             while(vidaManjiro.getVida()>0 || vida.getVida()>0){
                                                 opc6 = JOptionPane.showOptionDialog(null, "Vida restante Manjiro: "+vidaManjiro.getVida()+"\nVida restante Aventurero: "+vida.getVida(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesE, botonesE);
                                                 vidaMenosManjiro = (int)(Math.random()*9)+1;
-                                                randomAventureroLucha = (int)(Math.random()*99)+1;
+                                                if(obJugador.contains(espadaNueva)){
+                                                        randomAventureroLucha = (int)(Math.random()*espadaNueva.getAtaque())+1;
+                                                }else{
+                                                    randomAventureroLucha = (int)(Math.random()*es.getAtaque())+1;
+                                                }
                                                 vidaManjiro.setVida(vidaManjiro.getVida()-randomAventureroLucha);
                                                 vida.setVida(vida.getVida()-vidaMenosManjiro);
                                                 if(vida.getVida()<=0){finJuego();break;}
@@ -139,14 +153,25 @@ public class main {
                                             JOptionPane.showOptionDialog(null,"Superaste a Manjiro, continuas y...\nHas llegado al castillo de Dunstaffnage sano y salvo, ten cuidado al volver aventurero...","Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, castillo, botonesFin, botonesFin);
                                         }
                                     }else if(opc5==1){
+                                        // Definicion de variables + crear objeto vida para el jefe
                                         vida vidaManjiro = new vida(100);
+
                                         int vidaMenosManjiro = (int)(Math.random()*9)+1;
-                                        int randomAventurero = (int)(Math.random()*99)+1;
+                                        int randomAventurero = 0;
+                                        if(obJugador.contains(espadaNueva)){
+                                            randomAventurero = (int)(Math.random()*espadaNueva.getAtaque())+1;
+                                        }else{
+                                            randomAventurero = (int)(Math.random()*es.getAtaque())+1;
+                                        }
                                         int opc6=0;
                                         while(vidaManjiro.getVida()>0 || vida.getVida()>0){
                                             opc6 = JOptionPane.showOptionDialog(null, "Vida restante Manjiro: "+vidaManjiro.getVida()+"\nVida restante Aventurero: "+vida.getVida(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesE, botonesE);
                                             vidaMenosManjiro = (int)(Math.random()*9)+1;
-                                            randomAventurero = (int)(Math.random()*99)+1;
+                                            if(obJugador.contains(espadaNueva)){
+                                                randomAventurero = (int)(Math.random()*espadaNueva.getAtaque())+1;
+                                            }else{
+                                                randomAventurero = (int)(Math.random()*es.getAtaque())+1;
+                                            }
                                             vidaManjiro.setVida(vidaManjiro.getVida()-randomAventurero);
                                             vida.setVida(vida.getVida()-vidaMenosManjiro);
                                             if(vida.getVida()<=0){finJuego();break;}
@@ -157,14 +182,14 @@ public class main {
                                         }
                                     }
                                 }
-                                else if(opc5==1){
+                                if(opc5==1){
                                     finJuego1();
                                 }
                             }
-                            else if(opc4==1){
+                            if(opc4==1){
                                 finJuego1();
                             }
-                        }else if(opc3==1){
+                        }if(opc3==1){
                             finJuego1();
                         }
 
@@ -191,7 +216,7 @@ public class main {
                             int opc4 = JOptionPane.showOptionDialog(null, "Comienzas andar por dentro de la mazmorra y te encuentras a su jefe, Hotaru Haganezuka", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesE, botonesE);
                             if(opc4==0){
                                 vida.setVida(vida.getVida()-20);
-                                opc4 = JOptionPane.showOptionDialog(null, "Hotaru te asesta el primer golpe ya que es un herrero mazado y rápido\nDurabilidad = "+es.getDurabilidad()+"\nVida"+vida.getVida(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesF, botonesF);
+                                opc4 = JOptionPane.showOptionDialog(null, "Hotaru te asesta el primer golpe ya que es un herrero mazado y rápido"+"\nVida"+vida.getVida(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesF, botonesF);
                                 opc4 = JOptionPane.showOptionDialog(null, "Hotaru al ver tu potencial combatiendo se ofrece a hacerte una espada para ti", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo2, botonesD, botonesD);
                                 if(opc4==0){
                                     espadaNueva = new espada(15,20);
@@ -207,18 +232,32 @@ public class main {
                                     opc5 = JOptionPane.showOptionDialog(null, "Caminas y caminas sobre las ruinas hasta que te topas con, Manjiro Sano", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesF, botonesF);
                                     opc5 = JOptionPane.showOptionDialog(null, "Manjiro te propone sacar un dado para ver si peleais o te deja pasar", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesH, botonesH);
                                     if(opc5==0){
+                                        //Dados
                                         double randomManjiro = Math.random()*5.99+1;
                                         double randomAventurero = Math.random()*5.99+1;
                                         if(randomManjiro>randomAventurero){
                                             JOptionPane.showMessageDialog(null, "Manjiro gana los dados, te toca pelear");
+
+                                            // Definicion de variables + crear objeto vida para el jefe
+                                            
                                             vida vidaManjiro = new vida(100);
-                                            int vidaMenosManjiro = (int)(Math.random()*99)+1;
-                                            int randomAventureroLucha = (int)(Math.random()*99)+1;
+                                            int vidaMenosManjiro = (int)(Math.random()*9)+1;
+                                            int randomAventureroLucha = 0;
+                                            if(obJugador.contains(espadaNueva)){
+                                                randomAventureroLucha = (int)(Math.random()*espadaNueva.getAtaque())+1;
+                                            }else{
+                                                randomAventureroLucha = (int)(Math.random()*es.getAtaque())+1;
+                                            }
                                             int opc6=0;
+                                            //Bucle de Lucha
                                             while(vidaManjiro.getVida()>0 || vida.getVida()>0){
                                                 opc6 = JOptionPane.showOptionDialog(null, "Vida restante Manjiro: "+vidaManjiro.getVida()+"\nVida restante Aventurero: "+vida.getVida(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesE, botonesE);
                                                 vidaMenosManjiro = (int)(Math.random()*9)+1;
-                                                randomAventureroLucha = (int)(Math.random()*99)+1;
+                                                if(obJugador.contains(espadaNueva)){
+                                                    randomAventureroLucha = (int)(Math.random()*espadaNueva.getAtaque())+1;
+                                                }else{
+                                                    randomAventureroLucha = (int)(Math.random()*es.getAtaque())+1;
+                                                }
                                                 vidaManjiro.setVida(vidaManjiro.getVida()-randomAventureroLucha);
                                                 vida.setVida(vida.getVida()-vidaMenosManjiro);
                                                 if(vida.getVida()<=0){finJuego();break;}
@@ -233,13 +272,24 @@ public class main {
                                     }
                                 else if(opc5==1){
                                     vida vidaManjiro = new vida(100);
-                                    int vidaMenosManjiro = (int)(Math.random()*9)+1;
-                                    int randomAventurero = (int)(Math.random()*99)+1;
+                                    int vidaMenosManjiro = (int)(Math.random()*15)+1;
+                                    int randomAventurero = 0;
+                                    if(obJugador.contains(espadaNueva)){
+                                        randomAventurero = (int)(Math.random()*espadaNueva.getAtaque())+1;
+                                    }else{
+                                        randomAventurero = (int)(Math.random()*es.getAtaque())+1;
+                                    }
                                     int opc6=0;
+
+                                    //Bucle de Lucha
                                     while(vidaManjiro.getVida()>0 || vida.getVida()>0){
                                         opc6 = JOptionPane.showOptionDialog(null, "Vida restante Manjiro: "+vidaManjiro.getVida()+"\nVida restante Aventurero: "+vida.getVida(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesE, botonesE);
                                         vidaMenosManjiro = (int)(Math.random()*9)+1;
-                                        randomAventurero = (int)(Math.random()*99)+1;
+                                        if(obJugador.contains(espadaNueva)){
+                                            randomAventurero = (int)(Math.random()*espadaNueva.getAtaque())+1;
+                                        }else{
+                                            randomAventurero = (int)(Math.random()*es.getAtaque())+1;
+                                        }
                                         vidaManjiro.setVida(vidaManjiro.getVida()-randomAventurero);
                                         vida.setVida(vida.getVida()-vidaMenosManjiro);
                                         if(vida.getVida()<=0){finJuego(); break;}
@@ -251,18 +301,18 @@ public class main {
                                     }
                                 }
                             }
-                            else if(opc4==1){
+                            if(opc4==1){
                                 finJuego1();
                             }
-                        }else if(opc3==1){
+                        }if(opc3==1){
                             finJuego1();
                         }
                     }
 
-                }else if (opc1 == 1){
+                }if (opc1 == 1){
                     finJuego1();
                 }
-            }else if (opc==1){
+            }if (opc==1){
                 JOptionPane.showOptionDialog(null,"Te das media vuelta y a casa con el recado","Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, null, botonesFin, botonesFin);
             }
         }
@@ -271,6 +321,6 @@ public class main {
         JOptionPane.showMessageDialog(null, "Te han matado ☠", "FIN", 0);
     }
     public static void finJuego1(){
-        JOptionPane.showMessageDialog(null, "Has intentado huir y te han matado ☠", "FIN", 0);
+        JOptionPane.showMessageDialog(null, "Has intentado huir\nHuir es de cobardes y te han matado ☠", "FIN", 0);
     }
 }

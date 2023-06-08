@@ -177,8 +177,6 @@ public class Movimiento{
                     tp.remove(tp);
                     frame.dispose();
                     disposeFrame();
-                    //System.exit(0);
-                    //tp.updateUI();
                     finalX = targetX;
                     finalY = targetY;
                 }
@@ -186,11 +184,6 @@ public class Movimiento{
 
             }
         }
-
-        /*public void cordenadas (Rectangle champion){ 
-            champion.getX();
-            champion.getY();
-        }*/
         public double getXfinal(){
             return champion.getX();
         }
