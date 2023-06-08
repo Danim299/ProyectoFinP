@@ -73,13 +73,9 @@ public class main {
                 System.out.println();
             }
             
-            System.out.println(m.getFinalX()+" y "+ m.getFinalY());
+        int opc = JOptionPane.showOptionDialog(null, "De camino al castillo te adentras en la primera mazmorra:  "+d.getNombre()+"\nTienes todo el equipo listo?", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, icon, botones, botones);
         
-            System.out.println("hola");
-            
-        listo = JOptionPane.showOptionDialog(null, "De camino al castillo te adentras en la primera mazmorra:  "+d.getNombre()+"\nTienes todo el equipo listo?", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, icon, botones, botones);
-        
-            if (listo==0){
+            if (opc==0){
                 int opc1 = JOptionPane.showOptionDialog(null, "Al seguir hacia delante te encuentras con el jefe de la mazmorra", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo1, botonesE, botonesE);
                 if(opc1==0){
                     if(espa==0){
@@ -118,17 +114,25 @@ public class main {
                                     opc5 = JOptionPane.showOptionDialog(null, "Caminas y caminas sobre las ruinas hasta que te topas con, Manjiro Sano", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesF, botonesF);
                                     opc5 = JOptionPane.showOptionDialog(null, "Manjiro te propone sacar un dado para ver si peleais o te deja pasar", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesH, botonesH);
                                     if(opc5==0){
-                                        double randomManjiro = 1+Math.random()*5.99;
-                                        double randomAventurero = 1+Math.random()*5.99;
+                                        double randomManjiro = Math.random()*5.99+1;
+                                        double randomAventurero = Math.random()*5.99+1;
                                         if(randomManjiro>randomAventurero){
                                             JOptionPane.showMessageDialog(null, "Manjiro gana los dados, te toca pelear");
-                                            double vidaMenosManjiro = 1+Math.random()*99.99;
-                                            JOptionPane.showOptionDialog(null, "Manjiro asesta el primer golpe el cual te va a quitar: "+vidaMenosManjiro, "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesH, botonesH);
-                                            vida.setVida(vida.getVida()-vidaMenosManjiro);
-                                            if(vida.getVida()<0){
-                                                finJuego();
-                                            }else{
-                                                JOptionPane.showOptionDialog(null,"Has llegado al castillo de Dunstaffnage\naqui concluye tu aventura llena de riesgos","Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, castillo, botonesFin, botonesFin);
+                                            vida vidaManjiro = new vida(100);
+                                            int vidaMenosManjiro = (int)(Math.random()*99)+1;
+                                            int randomAventureroLucha = (int)(Math.random()*99)+1;
+                                            int opc6=0;
+                                            while(vidaManjiro.getVida()>0 || vida.getVida()>0){
+                                                opc6 = JOptionPane.showOptionDialog(null, "Vida restante Manjiro: "+vidaManjiro.getVida()+"\nVida restante Aventurero: "+vida.getVida(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesE, botonesE);
+                                                vidaMenosManjiro = (int)(Math.random()*9)+1;
+                                                randomAventureroLucha = (int)(Math.random()*99)+1;
+                                                vidaManjiro.setVida(vidaManjiro.getVida()-randomAventureroLucha);
+                                                vida.setVida(vida.getVida()-vidaMenosManjiro);
+                                                if(vida.getVida()<=0){finJuego();break;}
+                                                else if(vidaManjiro.getVida()<0){
+                                                    JOptionPane.showOptionDialog(null,"Superaste a Manjiro, continuas y...\nHas llegado al castillo de Dunstaffnage sano y salvo, ten cuidado al volver aventurero...","Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, castillo, botonesFin, botonesFin);
+                                                    break;}
+                                                if(opc6==1){finJuego1();break;}
                                             }
                                         }else{
                                             JOptionPane.showMessageDialog(null, "Ganas tú, Manjiro como dijo te deja pasar");
@@ -158,10 +162,10 @@ public class main {
                                 }
                             }
                             else if(opc4==1){
-                                finJuego();
+                                finJuego1();
                             }
                         }else if(opc3==1){
-                            finJuego();
+                            finJuego1();
                         }
 
 
@@ -203,18 +207,25 @@ public class main {
                                     opc5 = JOptionPane.showOptionDialog(null, "Caminas y caminas sobre las ruinas hasta que te topas con, Manjiro Sano", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesF, botonesF);
                                     opc5 = JOptionPane.showOptionDialog(null, "Manjiro te propone sacar un dado para ver si peleais o te deja pasar", "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesH, botonesH);
                                     if(opc5==0){
-                                        double randomManjiro = 1+Math.random()*5.99;
-                                        double randomAventurero = 1+Math.random()*5.99;
+                                        double randomManjiro = Math.random()*5.99+1;
+                                        double randomAventurero = Math.random()*5.99+1;
                                         if(randomManjiro>randomAventurero){
                                             JOptionPane.showMessageDialog(null, "Manjiro gana los dados, te toca pelear");
-                                            double vidaMenosManjiro = 1+Math.random()*99.99;
-                                            JOptionPane.showOptionDialog(null, "Manjiro asesta el primer golpe el cual te va a quitar: "+vidaMenosManjiro, "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesH, botonesH);
-                                            vida.setVida(vida.getVida()-vidaMenosManjiro);
-                                            if(vida.getVida()<0){
-                                                finJuego();
-                                            }else{
-                                                JOptionPane.showOptionDialog(null,"Has llegado al castillo de Dunstaffnage\naqui concluye tu aventura llena de riesgos","Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, castillo, botonesFin, botonesFin); 
-                                            }
+                                            vida vidaManjiro = new vida(100);
+                                            int vidaMenosManjiro = (int)(Math.random()*99)+1;
+                                            int randomAventureroLucha = (int)(Math.random()*99)+1;
+                                            int opc6=0;
+                                            while(vidaManjiro.getVida()>0 || vida.getVida()>0){
+                                                opc6 = JOptionPane.showOptionDialog(null, "Vida restante Manjiro: "+vidaManjiro.getVida()+"\nVida restante Aventurero: "+vida.getVida(), "Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, enemigo3, botonesE, botonesE);
+                                                vidaMenosManjiro = (int)(Math.random()*9)+1;
+                                                randomAventureroLucha = (int)(Math.random()*99)+1;
+                                                vidaManjiro.setVida(vidaManjiro.getVida()-randomAventureroLucha);
+                                                vida.setVida(vida.getVida()-vidaMenosManjiro);
+                                                if(vida.getVida()<=0){finJuego();break;}
+                                                else if(vidaManjiro.getVida()<0){
+                                                    JOptionPane.showOptionDialog(null,"Superaste a Manjiro, continuas y...\nHas llegado al castillo de Dunstaffnage sano y salvo, ten cuidado al volver aventurero...","Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, castillo, botonesFin, botonesFin);
+                                                    break;}
+                                                if(opc6==1){finJuego1();break;}}
                                         }else{
                                             JOptionPane.showMessageDialog(null, "Ganas tú, Manjiro como dijo te deja pasar");
                                             JOptionPane.showOptionDialog(null,"Superaste a Manjiro, continuas y...\nHas llegado al castillo de Dunstaffnage sano y salvo, ten cuidado al volver aventurero...","Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, castillo, botonesFin, botonesFin);
@@ -251,8 +262,8 @@ public class main {
                 }else if (opc1 == 1){
                     finJuego1();
                 }
-            }else if (listo==1){
-                System.out.println("Bueno aquí esperaré...");
+            }else if (opc==1){
+                JOptionPane.showOptionDialog(null,"Te das media vuelta y a casa con el recado","Dungeon", JOptionPane.INFORMATION_MESSAGE, 0, null, botonesFin, botonesFin);
             }
         }
     }
